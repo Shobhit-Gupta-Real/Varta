@@ -1,29 +1,45 @@
 import React, { useState } from 'react'
 import logo from '/finaltitle.png'
 import { Button, TextField } from '@mui/material'
+import useValid from '../utils/useValid'
+import { validEmail, validateUser } from '../utils/Validators'
+
+
 function Login() {
   const [login, setLogin] = useState(true)
-  const [email, setEmail] = useState('')
+  const email = useValid('', validEmail)
   const [password, setPassword] = useState('')
   const [bio, setBio] = useState('')
-  const [username, setUsername] = useState('')
+  const username = useValid('', validateUser)
   const [img, setImg] = useState(null)
+  
+  
+
+  const handleSignup = (e) =>{
+    e.preventDefault();
+  }
+  const handleSignin = () =>{
+    e.preventDefault();
+  }
   return (
-   <div className='h-[90vh] w-[90vw] bg-[#f4f5f8] rounded-2xl flex flex-col items-center justify-center relative shadow-custom-shadow'>
-     <img src={logo} alt="" className='bg-cover bg-center filter blur-md absolute z-0'/>
-     <div className='flex flex-col gap-[1.5rem] z-10'>
+   <div className='h-[90vh] w-[90vw] bg-gradient-to-r from-[#f39ef3] to-[#ff7350] rounded-2xl flex flex-col items-center justify-center relative shadow-custom-shadow'>
+     <div className='flex flex-col bg-white shadow-lg px-[8%] py-[4%] rounded-xl gap-[1.5rem] z-10'>
         {
             login ? (
                 <>
                     <p className='text-2xl font-bold'>Login To Your Account</p>
                     <TextField id="filled-basic" label="Email" variant="filled"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}/>
+                    value={email.data}
+                    required
+                    error={email.error}
+                    helperText={email.helperText}
+                    onChange={email.change}/>
                     <TextField
                     id="filled-password-input" label="Password" type="password" autoComplete="current-password" variant="filled"
                     value={password}
+                    required
                     onChange={(e)=>setPassword(e.target.value)}/>
-                    <Button variant="contained" >LogIn</Button>
+                    <Button variant="contained" onClick={handleSignin} >LogIn</Button>
                     <div className='flex gap-2 flex-col items-center'>
                         <p>or</p>
                         <h1 className='cursor-pointer font-bold text-xl' onClick={()=>setLogin(false)}>Sign Up!</h1>
@@ -47,19 +63,26 @@ function Login() {
                 <input type="file" id='input_file' className='hidden' onChange={(e)=>setImg(e.target.files[0])}/>
                  </div>
                  <TextField id="filled-basic" label="Username" variant="filled"
-                    value={username}
-                    onChange={(e)=>setUsername(e.target.value)}/>
+                    value={username.data}
+                    required
+                    error={username.error}
+                    helperText={username.helperText}
+                    onChange={username.change}/>
                     <TextField id="filled-basic" label="Bio" variant="filled"
                     value={bio}
                     onChange={(e)=>setBio(e.target.value)}/>
                     <TextField id="filled-basic" label="Email" variant="filled"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}/>
+                    value={email.data}
+                    required
+                    helperText={email.helperText}
+                    error={email.error}
+                    onChange={email.change}/>
                     <TextField
                     id="filled-password-input" label="Password" type="password" autoComplete="current-password" variant="filled"
                     value={password}
+                    required
                     onChange={(e)=>setPassword(e.target.value)}/>
-                    <Button variant="contained" color='error' >SignUp</Button>
+                    <Button variant="contained" color='error' onClick={handleSignup} >SignUp</Button>
                     <div className='flex gap-2 flex-col items-center'>
                         <p>or</p>
                         <h1 className='cursor-pointer font-bold text-xl' onClick={()=>setLogin(true)}>Log In!</h1>
