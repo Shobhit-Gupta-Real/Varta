@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app{
+    background-color: #dddedd;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile_image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+}
+#edit_profile_image{
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 0;
+    border-radius: 50%;
+    transition: opacity 0.3s ease;
+  }
+  
+  #edit_profile_image:hover{
+    opacity: 1; 
+  }
