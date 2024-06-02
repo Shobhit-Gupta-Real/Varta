@@ -11,7 +11,7 @@ const NotFound = lazy(()=>import('./pages/NotFound'))
 let user = true;
 const App = () =>{
   return(
-    <div className="app">
+    <div className="">
     <Routes>
       <Route element={<ProtectRoute user={user}/>}>
       <Route path="" element={<Home/>} />

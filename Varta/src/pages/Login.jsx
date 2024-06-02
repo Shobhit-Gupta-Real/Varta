@@ -22,8 +22,9 @@ function Login() {
     e.preventDefault();
   }
   return (
+  <div className='app'>
    <div className='h-[90vh] w-[90vw] bg-gradient-to-r from-[#f39ef3] to-[#ff7350] rounded-2xl flex flex-col items-center justify-center relative shadow-custom-shadow'>
-     <div className='flex flex-col bg-white shadow-lg px-[8%] py-[4%] rounded-xl gap-[1.5rem] z-10'>
+     <div data-testid="div1" className='flex flex-col bg-white shadow-lg px-[8%] py-[4%] rounded-xl gap-[1.5rem] z-10'>
         {
             login ? (
                 <>
@@ -91,6 +92,7 @@ function Login() {
             )
         }
      </div>
+   </div>
    </div>
   )
 }

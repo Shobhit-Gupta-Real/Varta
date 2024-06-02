@@ -8,6 +8,8 @@ test("This is the login Component", ()=>{
             <Login/>
         </StaticRouter>
     )
-    console.log(login)
+    
+    const divele = login.getByTestId("div1")
+    console.log(divele)
 })
 
