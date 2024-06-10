@@ -10,7 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
     <HelmetProvider>
-    <App />
+      <div onContextMenu={e=>e.preventDefault()}>
+      <App />
+      </div>
     </HelmetProvider>
     </BrowserRouter>
   </React.StrictMode>,

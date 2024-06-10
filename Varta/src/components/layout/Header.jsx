@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, IconButton, Menu, Toolbar, Tooltip, Typography } from '@mui/material'
+import { AppBar, Backdrop, Badge, Box, IconButton, Menu, Toolbar, Tooltip, Typography } from '@mui/material'
 import React, { Suspense, lazy, useState } from 'react'
 import { themePrimary } from '../../constants/color'
 import MenuIcon from '@mui/icons-material/Menu';
@@ -9,10 +9,14 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 const Search = lazy(()=>import('../specific/Search'))
+const Notification = lazy(()=>import('../specific/Notification'))
+const NewGroupDialog = lazy(()=>import('../specific/NewGroup'))
 
 function Header() {
   const navigate = useNavigate()
   const [isSearch, setIsSearch] = useState()
+  const [isNotification, setIsNotification] = useState()
+  const [isNewGroup, setIsNewGroup] = useState()
 
   const handleMobile = () =>{
 
@@ -23,11 +27,12 @@ function Header() {
 
 const openNewGroup = () => {
     // Function logic goes here
+    setIsNewGroup((prev)=>!prev)
 };
 
 const navigateToGroup = () => navigate("/groups");
 const openNotification = () =>{
-
+  setIsNotification(prev => !prev)
 }
 const logoutHandler = () => {
     // Function logic goes here
@@ -102,11 +107,22 @@ const notificationCount = 4;
         </AppBar>
         </Box>
         {isSearch && 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Backdrop open />}>
           <Search/>
         </Suspense>
         }
+        { isNotification &&
+        <Suspense fallback={<Backdrop open />}>
+          <Notification/>
+        </Suspense>
+        }
+        {isNewGroup && 
+        <Suspense fallback={<Backdrop open />}>
+          <NewGroupDialog/>
+        </Suspense>
+        }
     </>
+
   )
 }
 
